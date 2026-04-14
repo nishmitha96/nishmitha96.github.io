@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nishmitha Ganesh | Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0a0d14;
+  --bg2:#0f1320;
+  --bg3:#141929;
+  --card:#151c2e;
+  --card2:#1a2238;
+  --border:#1e2d4a;
+  --border2:#243352;
+  --accent:#00d4aa;
+  --accent2:#0ea5e9;
+  --accent3:#7c3aed;
+  --text:#e8eaf2;
+  --muted:#6b7a99;
+  --muted2:#4a5568;
+  --white:#ffffff;
+  --grid-line: rgba(0,212,170,0.06);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7;}
+
+/* GRID BACKGROUND */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size:48px 48px;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:64px;
+  background:rgba(10,13,20,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:16px;
+  color:var(--white);letter-spacing:-0.3px;display:flex;align-items:center;gap:10px;
+}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{
+  text-decoration:none;color:var(--muted);font-size:13px;font-family:'DM Mono',monospace;
+  letter-spacing:0.5px;transition:color 0.2s;position:relative;
+}
+.nav-links a::before{content:'./';color:var(--accent);opacity:0;transition:opacity 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-links a:hover::before{opacity:1;}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:80px 3rem 3rem;position:relative;z-index:1;
+}
+.hero-inner{max-width:960px;margin:0 auto;width:100%;}
+.hero-kicker{
+  font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);
+  letter-spacing:3px;text-transform:uppercase;margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-kicker::before{content:'';display:block;width:32px;height:1px;background:var(--accent);}
+.hero h1{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:72px;
+  line-height:1.0;color:var(--white);margin-bottom:0.3rem;letter-spacing:-2px;
+}
+.hero h1 .accent{color:var(--accent);}
+.hero-role{
+  font-family:'Syne',sans-serif;font-size:22px;font-weight:600;
+  color:var(--muted);margin-bottom:1.5rem;letter-spacing:-0.5px;
+}
+.hero-desc{
+  font-size:16px;color:var(--muted);max-width:560px;margin-bottom:2.5rem;
+  line-height:1.8;font-weight:300;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-accent{
+  background:var(--accent);color:#0a0d14;padding:13px 28px;
+  border-radius:4px;text-decoration:none;font-size:14px;font-weight:700;
+  font-family:'DM Mono',monospace;letter-spacing:0.5px;
+  transition:all 0.2s;border:1px solid var(--accent);
+}
+.btn-accent:hover{background:transparent;color:var(--accent);}
+.btn-ghost{
+  border:1px solid var(--border2);color:var(--muted);padding:13px 28px;
+  border-radius:4px;text-decoration:none;font-size:14px;font-family:'DM Mono',monospace;
+  letter-spacing:0.5px;transition:all 0.2s;
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+/* STAT BAR */
+.stat-bar{
+  display:flex;gap:0;border:1px solid var(--border);border-radius:8px;
+  overflow:hidden;max-width:600px;
+}
+.stat-item{
+  flex:1;padding:1.2rem 1.5rem;border-right:1px solid var(--border);
+  position:relative;
+}
+.stat-item:last-child{border-right:none;}
+.stat-val{
+  font-family:'Syne',sans-serif;font-size:28px;font-weight:800;
+  color:var(--white);line-height:1;
+}
+.stat-val .unit{font-size:16px;color:var(--accent);}
+.stat-lbl{font-size:11px;color:var(--muted);margin-top:4px;font-family:'DM Mono',monospace;letter-spacing:0.5px;}
+
+/* SECTION */
+section{padding:100px 3rem;position:relative;z-index:1;}
+.section-inner{max-width:960px;margin:0 auto;}
+.section-eyebrow{
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);
+  letter-spacing:3px;text-transform:uppercase;margin-bottom:0.8rem;
+  display:flex;align-items:center;gap:10px;
+}
+.section-eyebrow::after{content:'';flex:1;max-width:40px;height:1px;background:var(--accent);}
+.section-h{
+  font-family:'Syne',sans-serif;font-size:42px;font-weight:800;
+  color:var(--white);margin-bottom:3rem;letter-spacing:-1px;line-height:1.1;
+}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:4rem;align-items:start;}
+.about-text p{color:var(--muted);font-size:15px;margin-bottom:1.2rem;line-height:1.9;font-weight:300;}
+.about-text p strong{color:var(--text);font-weight:500;}
+.mini-stats{display:grid;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.mini-stat{background:var(--card);padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+.mini-stat-n{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--accent);}
+.mini-stat-l{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;text-align:right;max-width:140px;line-height:1.4;}
+
+/* SKILLS */
+.skills-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.skill-block{background:var(--card);padding:1.6rem;transition:background 0.2s;}
+.skill-block:hover{background:var(--card2);}
+.skill-block-top{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.skill-num{
+  font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);
+  background:rgba(0,212,170,0.08);padding:3px 8px;border-radius:3px;border:1px solid rgba(0,212,170,0.2);
+}
+.skill-block-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.stag{
+  font-size:11px;color:var(--muted);padding:3px 8px;
+  border:1px solid var(--border2);border-radius:3px;font-family:'DM Mono',monospace;
+  transition:all 0.2s;
+}
+.stag:hover{border-color:var(--accent);color:var(--accent);}
+
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.exp-item{background:var(--card);padding:2rem 2rem 2rem 2rem;transition:background 0.2s;border-left:3px solid transparent;}
+.exp-item:hover{background:var(--card2);border-left-color:var(--accent);}
+.exp-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.5rem;}
+.exp-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--white);}
+.exp-date{
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);
+  background:rgba(0,212,170,0.08);padding:4px 10px;border-radius:3px;
+  border:1px solid rgba(0,212,170,0.2);white-space:nowrap;
+}
+.exp-company{font-size:13px;color:var(--accent2);margin-bottom:1rem;font-family:'DM Mono',monospace;}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:0.4rem;}
+.exp-bullets li{font-size:13.5px;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.7;}
+.exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:11px;top:3px;}
+
+/* PROJECTS */
+.proj-card{
+  background:var(--card);border:1px solid var(--border);border-radius:8px;
+  padding:2.5rem;position:relative;overflow:hidden;
+  transition:border-color 0.3s;
+}
+.proj-card:hover{border-color:var(--accent);}
+.proj-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+}
+.proj-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem;}
+.proj-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--white);}
+.proj-type{
+  font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);
+  background:rgba(14,165,233,0.08);padding:4px 10px;border-radius:3px;
+  border:1px solid rgba(14,165,233,0.2);white-space:nowrap;
+}
+.proj-desc{font-size:14px;color:var(--muted);margin-bottom:1.5rem;line-height:1.8;font-weight:300;}
+.proj-metrics{
+  display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;
+}
+.metric-pill{
+  display:flex;align-items:center;gap:8px;background:rgba(0,212,170,0.05);
+  border:1px solid rgba(0,212,170,0.15);padding:6px 14px;border-radius:4px;
+}
+.metric-val{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--accent);}
+.metric-lbl{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;}
+.proj-link{
+  display:inline-flex;align-items:center;gap:8px;color:var(--accent);
+  font-size:13px;font-family:'DM Mono',monospace;text-decoration:none;
+  border:1px solid rgba(0,212,170,0.3);padding:8px 16px;border-radius:4px;
+  transition:all 0.2s;
+}
+.proj-link:hover{background:rgba(0,212,170,0.08);}
+
+/* BAR CHART (decorative visual) */
+
+.chart-title{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:0.8rem;letter-spacing:1px;}
+
+
+
+
+
+
+
+
+
+
+/* EDUCATION */
+.edu-grid{display:grid;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.edu-item{background:var(--card);padding:1.6rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;transition:background 0.2s;}
+.edu-item:hover{background:var(--card2);}
+.edu-degree{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:3px;}
+.edu-school{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;}
+.edu-badge{
+  font-family:'DM Mono',monospace;font-size:11px;padding:4px 12px;border-radius:3px;
+  white-space:nowrap;
+}
+.edu-badge.done{background:rgba(0,212,170,0.08);color:var(--accent);border:1px solid rgba(0,212,170,0.25);}
+.edu-badge.past{background:rgba(107,122,153,0.1);color:var(--muted);border:1px solid var(--border2);}
+
+/* CERTS */
+.cert-wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:2rem;}
+.cert-item{background:var(--card);padding:1.2rem 1.6rem;display:flex;align-items:center;gap:12px;transition:background 0.2s;}
+.cert-item:hover{background:var(--card2);}
+.cert-icon{
+  width:32px;height:32px;border-radius:4px;background:rgba(0,212,170,0.08);
+  border:1px solid rgba(0,212,170,0.2);display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+}
+.cert-name{font-size:13px;color:var(--text);font-weight:500;}
+.cert-by{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:2px;}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.contact-links{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.contact-link{
+  background:var(--card);padding:1.2rem 1.6rem;display:flex;align-items:center;
+  gap:1rem;text-decoration:none;transition:background 0.2s;border-left:3px solid transparent;
+}
+.contact-link:hover{background:var(--card2);border-left-color:var(--accent);}
+.contact-link-icon{
+  width:36px;height:36px;background:rgba(0,212,170,0.08);border:1px solid rgba(0,212,170,0.2);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:15px;
+}
+.contact-link-label{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:0.5px;}
+.contact-link-val{font-size:14px;color:var(--text);margin-top:1px;}
+.contact-form-wrap{display:flex;flex-direction:column;gap:0.8rem;}
+.cf-group{display:flex;flex-direction:column;gap:4px;}
+.cf-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.cf-input,.cf-textarea{
+  background:var(--card);border:1px solid var(--border2);border-radius:4px;
+  padding:11px 14px;font-size:14px;font-family:'DM Sans',sans-serif;
+  color:var(--text);outline:none;transition:border-color 0.2s;
+}
+.cf-input:focus,.cf-textarea:focus{border-color:var(--accent);}
+.cf-textarea{resize:vertical;min-height:110px;}
+.cf-btn{
+  background:var(--accent);color:#0a0d14;border:none;padding:13px;
+  border-radius:4px;font-size:13px;font-weight:700;font-family:'DM Mono',monospace;
+  letter-spacing:1px;cursor:pointer;transition:all 0.2s;text-transform:uppercase;
+}
+.cf-btn:hover{background:transparent;color:var(--accent);border:1px solid var(--accent);}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);padding:2rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;z-index:1;
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);}
+.footer-left span{color:var(--accent);}
+.footer-right{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted2);}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:760px){
+  .hero h1{font-size:42px;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .skills-wrap{grid-template-columns:1fr 1fr;}
+  nav{padding:0 1.2rem;}
+  .nav-links{gap:1.2rem;}
+  section{padding:60px 1.2rem;}
+  .hero{padding:80px 1.2rem 2rem;}
+  .stat-bar{flex-direction:column;}
+  .stat-item{border-right:none;border-bottom:1px solid var(--border);}
+  .cert-wrap{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span class="nav-dot"></span>NG</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#education">education</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-kicker">Available for Data Analyst Roles &mdash; Cork, Ireland</div>
+    <h1>Nishmitha<br><span class="accent">Ganesh.</span></h1>
+    <div class="hero-role">Data Analyst &nbsp;&middot;&nbsp; BI Developer &nbsp;&middot;&nbsp; MSc Data Science</div>
+    <p class="hero-desc">
+      I turn raw data into decisions. 4+ years building dashboards, sales analytics pipelines, and machine learning models — grounded in a deep academic background in pure Mathematics.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-accent">View Projects →</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+    <div class="stat-bar">
+      <div class="stat-item">
+        <div class="stat-val"><span class="counter" data-target="4">0</span><span class="unit">+</span></div>
+        <div class="stat-lbl">years experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val"><span class="counter" data-target="6">0</span></div>
+        <div class="stat-lbl">regions analysed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val"><span class="counter" data-target="2">0</span><span class="unit">x</span></div>
+        <div class="stat-lbl">MSc degrees</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val"><span class="counter" data-target="3">0</span></div>
+        <div class="stat-lbl">ML models</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-eyebrow">01 &mdash; About</div>
+    <h2 class="section-h fade-up">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>I'm a Data Analyst based in Cork, Ireland, with a rare combination of <strong>deep mathematical training</strong> and <strong>hands-on business intelligence experience</strong>. I hold two master's degrees — an MSc in Mathematics and an MSc in Data Science &amp; Analytics from Munster Technological University.</p>
+        <p>At <strong>Reckitt</strong>, I owned end-to-end analytics for the South Regional Office — building automated Power BI dashboards, merging SAP primary sales data with secondary sales data, setting targets for ASMs and TSIs, and presenting insights directly to senior management across six regions.</p>
+        <p>I believe the best data work happens at the intersection of <strong>statistical rigour, clean engineering, and clear storytelling</strong>. Numbers mean nothing if you can't communicate them.</p>
+      </div>
+      <div class="mini-stats fade-up">
+        <div class="mini-stat">
+          <div class="mini-stat-n">4+</div>
+          <div class="mini-stat-lbl">years industry experience</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-n">6</div>
+          <div class="mini-stat-lbl">sales regions tracked at Reckitt</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-n">2x</div>
+          <div class="mini-stat-lbl">MSc — Maths &amp; Data Science</div>
+        </div>
+        
+        <div class="mini-stat">
+          <div class="mini-stat-n">4yrs</div>
+          <div class="mini-stat-lbl">Maths &amp; Stats tutoring experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-eyebrow">02 &mdash; Skills</div>
+    <h2 class="section-h fade-up">Technical Stack</h2>
+    <div class="skills-wrap fade-up">
+      <div class="skill-block">
+        <div class="skill-block-top"><span class="skill-num">01</span><div class="skill-block-title">Analytics &amp; BI</div></div>
+        <div class="skill-tags">
+          <span class="stag">Power BI</span><span class="stag">DAX</span><span class="stag">Data Modelling</span>
+          <span class="stag">Advanced Excel</span><span class="stag">PivotTables</span><span class="stag">Macros</span>
+          <span class="stag">Power Query</span><span class="stag">Dashboards</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-top"><span class="skill-num">02</span><div class="skill-block-title">Programming</div></div>
+        <div class="skill-tags">
+          <span class="stag">Python</span><span class="stag">R</span><span class="stag">SQL</span>
+          <span class="stag">Pandas</span><span class="stag">NumPy</span><span class="stag">Matplotlib</span>
+          <span class="stag">ggplot2</span><span class="stag">Scikit-learn</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-top"><span class="skill-num">03</span><div class="skill-block-title">Machine Learning</div></div>
+        <div class="skill-tags">
+          <span class="stag">Deep Learning</span><span class="stag">Neural Networks</span><span class="stag">NLP</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-top"><span class="skill-num">04</span><div class="skill-block-title">Mathematics &amp; Stats</div></div>
+        <div class="skill-tags">
+          <span class="stag">Advanced Maths</span><span class="stag">Probability Theory</span>
+          <span class="stag">Hypothesis Testing</span><span class="stag">Regression</span>
+          <span class="stag">ANOVA</span><span class="stag">Clustering</span><span class="stag">Time-Series</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-top"><span class="skill-num">05</span><div class="skill-block-title">Databases</div></div>
+        <div class="skill-tags">
+          <span class="stag">MySQL</span><span class="stag">MongoDB</span><span class="stag">Neo4j</span>
+          <span class="stag">SAP</span><span class="stag">Newspage</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-top"><span class="skill-num">06</span><div class="skill-block-title">Data Science</div></div>
+        <div class="skill-tags">
+          <span class="stag">Feature Engineering</span><span class="stag">Data Wrangling</span>
+          <span class="stag">Data Governance</span><span class="stag">KPI Design</span>
+          <span class="stag">Research Methods</span><span class="stag">Data Visualisation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-eyebrow">03 &mdash; Experience</div>
+    <h2 class="section-h fade-up">Work History</h2>
+    <div class="exp-list fade-up">
+      <div class="exp-item">
+        <div class="exp-top">
+          <div>
+            <div class="exp-title">Data Analyst / MIS Executive</div>
+            <div class="exp-company">Reckitt &mdash; South Regional Office, Bengaluru, India</div>
+          </div>
+          <div class="exp-date">Mar 2022 &ndash; Jul 2024</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Built automated daily &amp; monthly sales dashboards in Power BI and Excel tracking product-wise performance across 6 regions.</li>
+          <li>Extracted primary sales from SAP and secondary sales from Power BI; merged and reconciled both datasets in Excel to create a single source of truth.</li>
+          <li>Designed target-setting models for each region, ASM, and TSI based on historical achievement data and growth trajectories.</li>
+          <li>Created growth trackers and KPI scorecards for Product Managers; prepared management review decks and PowerPoint presentations for senior leadership.</li>
+          <li>Applied advanced DAX, data modelling, and cross-system reconciliation to ensure accuracy across all reports.</li>
+          <li>Provided technical support for Newspage software and conducted monthly Distribution Point and Super Stockist visit analysis.</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-top">
+          <div>
+            <div class="exp-title">Training Data Analyst &amp; Project Coordinator</div>
+            <div class="exp-company">TMI e2E Academy Pvt Ltd &mdash; Hyderabad, India</div>
+          </div>
+          <div class="exp-date">Feb 2020 &ndash; Feb 2022</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Tracked learner progress, task completion, attendance, and assessment scores for large-scale virtual banking induction programmes.</li>
+          <li>Built performance monitoring reports using data aggregation, validation, and standardisation to ensure accurate progress tracking.</li>
+          <li>Conducted EDA on assessment results to identify skill gaps and support data-driven training optimisation.</li>
+          <li>Provided live technical support during online training sessions for large participant groups.</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-top">
+          <div>
+            <div class="exp-title">Mathematics &amp; Statistics Tutor</div>
+            <div class="exp-company">Private Tutoring, Part-Time &mdash; India</div>
+          </div>
+          <div class="exp-date">2017 &ndash; 2019</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Delivered one-to-one and small group tutoring in Mathematics and Statistics to school and college students alongside MSc Mathematics studies.</li>
+          <li>Simplified complex statistical concepts including hypothesis testing and regression, improving student exam performance.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-eyebrow">04 &mdash; Projects</div>
+    <h2 class="section-h fade-up">Featured Work</h2>
+    <div class="proj-card fade-up">
+      <div class="proj-header">
+        <div class="proj-title">Market Mix Modelling</div>
+        <div class="proj-type">MSc Dissertation &middot; Solo</div>
+      </div>
+      <p class="proj-desc">
+        End-to-end Market Mix Model using a real-world retail/e-commerce sales dataset to quantify the contribution of individual marketing variables — price, promotions, and advertising spend — on sales revenue. Trained and benchmarked three machine learning algorithms with full data preprocessing including feature engineering, cleaning, and normalisation.
+      </p>
+          </div></div>
+          </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-metrics">
+        <div class="metric-pill"><div class="metric-val">Real</div><div class="metric-lbl">world<br>dataset</div></div>
+        <div class="metric-pill"><div class="metric-val">Retail</div><div class="metric-lbl">industry<br>data</div></div>
+        <div class="metric-pill"><div class="metric-val">Python</div><div class="metric-lbl">end-to-end<br>pipeline</div></div>
+      </div>
+      <div class="proj-tags">
+        <span class="stag">Python</span><span class="stag">Feature Engineering</span>
+        <span class="stag">Scikit-learn</span><span class="stag">Pandas</span>
+      </div>
+      <a href="https://github.com/nishmitha96/Market_Mix_Modeling_Project" target="_blank" class="proj-link">
+        &#128025; View on GitHub &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-eyebrow">05 &mdash; Education</div>
+    <h2 class="section-h fade-up">Academic Background</h2>
+    <div class="edu-grid fade-up">
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">MSc Data Science and Analytics</div>
+          <div class="edu-school">Munster Technological University (MTU), Cork, Ireland</div>
+        </div>
+        <div class="edu-badge done">✓ Completed &mdash; 2025</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">MSc Mathematics</div>
+          <div class="edu-school">St. Aloysius College (Autonomous), Mangalore, India</div>
+        </div>
+        <div class="edu-badge past">2017 &ndash; 2019</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">BSc Physics, Chemistry &amp; Mathematics</div>
+          <div class="edu-school">St. Aloysius College (Autonomous), Mangalore, India</div>
+        </div>
+        <div class="edu-badge past">2014 &ndash; 2017</div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem;">
+      <div class="section-eyebrow" style="margin-bottom:1.2rem;">Certifications</div>
+      <div class="cert-wrap fade-up">
+        <div class="cert-item">
+          <div class="cert-icon">&#128200;</div>
+          <div><div class="cert-name">Data Science Foundation Bootcamp</div><div class="cert-by">Code Basics</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">&#128202;</div>
+          <div><div class="cert-name">Data Analyst Bootcamp</div><div class="cert-by">Code Basics</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">&#128196;</div>
+          <div><div class="cert-name">Advanced Excel Training Programme</div><div class="cert-by">Chandoo.org</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">&#128203;</div>
+          <div><div class="cert-name">Power BI Training Programme</div><div class="cert-by">Chandoo.org</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-eyebrow">06 &mdash; Contact</div>
+    <h2 class="section-h fade-up">Get in Touch</h2>
+    <div class="contact-grid fade-up">
+      <div>
+        <p style="color:var(--muted);font-size:15px;margin-bottom:1.5rem;font-weight:300;line-height:1.8;">
+          I'm actively looking for Data Analyst roles in Ireland. Whether you have an opportunity, a project, or just want to talk data — I'd love to hear from you.
+        </p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:nishmithag96@gmail.com">
+            <div class="contact-link-icon">&#9993;</div>
+            <div><div class="contact-link-label">EMAIL</div><div class="contact-link-val">nishmithag96@gmail.com</div></div>
+          </a>
+          <a class="contact-link" href="tel:+353892715094">
+            <div class="contact-link-icon">&#128222;</div>
+            <div><div class="contact-link-label">PHONE</div><div class="contact-link-val">+353 892715094</div></div>
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/nishmitha-g" target="_blank">
+            <div class="contact-link-icon">&#128279;</div>
+            <div><div class="contact-link-label">LINKEDIN</div><div class="contact-link-val">linkedin.com/in/nishmitha-g</div></div>
+          </a>
+          <a class="contact-link" href="https://github.com/nishmitha96" target="_blank">
+            <div class="contact-link-icon">&#128025;</div>
+            <div><div class="contact-link-label">GITHUB</div><div class="contact-link-val">github.com/nishmitha96</div></div>
+          </a>
+          <div class="contact-link" style="cursor:default;">
+            <div class="contact-link-icon">&#128205;</div>
+            <div><div class="contact-link-label">LOCATION</div><div class="contact-link-val">Cork, Ireland</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <div class="cf-group">
+          <label class="cf-label">Your Name</label>
+          <input class="cf-input" type="text" placeholder="Jane Smith">
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">Your Email</label>
+          <input class="cf-input" type="email" placeholder="jane@company.com">
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">Subject</label>
+          <input class="cf-input" type="text" placeholder="Data Analyst Opportunity">
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">Message</label>
+          <textarea class="cf-textarea" placeholder="Tell me about the role or project..."></textarea>
+        </div>
+        <button class="cf-btn">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Designed &amp; built by <span>Nishmitha Ganesh</span> &mdash; Cork, Ireland &mdash; 2025</div>
+  <div class="footer-right">Data Analyst &middot; MSc Data Science &middot; MSc Mathematics</div>
+</footer>
+
+<script>
+// Scroll fade-in
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Counter animation
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const dur = 1500;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(ease * target);
+    if(p < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); }
+  });
+}, {threshold:0.5});
+document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+// Bar chart animation
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      
+      barObs.disconnect();
+    }
+  });
+}, {threshold:0.3});
+</script>
+</body>
+</html>
